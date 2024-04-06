@@ -6,7 +6,6 @@ import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -116,25 +115,16 @@ public class FleaStepDefs {
     public void iAddProductToCartFromLandingPage(String product) throws InterruptedException {
         String xpath = "//a[@class='button product_type_simple add_to_cart_button ajax_add_to_cart' and contains(@aria-label, '"+product+"')]";
 
-        try {
+        if (getDriver().findElements(By.xpath(xpath)).isEmpty()) {
+            System.out.println("Cannot find Add to cart button");
+            // throw new IllegalStateException("Add to cart button is not displayed");
+
+            // how to stop executing test?
+            Assert.fail("Add to cart button is not displayed");
+        } else {
             getDriver().findElement(By.xpath(xpath)).click();
             Thread.sleep(5_000);
-        } catch (NoSuchElementException exception) {
-            System.out.println("Cannot find Add to cart button");
-            Assert.fail("Add to cart button is not displayed");
-            throw exception;
         }
-//
-//        if (getDriver().findElements(By.xpath(xpath)).isEmpty()) {
-//            System.out.println("Cannot find Add to cart button");
-//            // throw new IllegalStateException("Add to cart button is not displayed");
-//
-//            // how to stop executing test?
-//            Assert.fail("Add to cart button is not displayed");
-//        } else {
-//            getDriver().findElement(By.xpath(xpath)).click();
-//            Thread.sleep(5_000);
-//        }
     }
 
     @Then("I click view cart and verify {string} is in cart")
