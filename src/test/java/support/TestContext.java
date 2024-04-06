@@ -32,7 +32,7 @@ public class TestContext {
     }
 
     public static void initialize() {
-        initialize("chrome", "local", true, true);
+        initialize("chrome", "local", true, false);
     }
 
     public static void teardown() {
@@ -63,7 +63,6 @@ public class TestContext {
                     }
                     if (envLinux) {
                         chromeOptions.setBinary("/usr/bin/chromium-browser");
-
                     }
                     driver = new ChromeDriver(chromeOptions);
                     break;

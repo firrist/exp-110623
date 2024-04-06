@@ -9,10 +9,11 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.io.File;
-import java.util.Date;
 import java.util.Iterator;
-import static org.assertj.core.api.Assertions.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static support.TestContext.getDriver;
 
 public class PredefinedStepDefs {
@@ -221,7 +222,6 @@ public class PredefinedStepDefs {
     public void iMouseOverElementWithXpath(String xpath) {
         new Actions(getDriver()).moveToElement(getDriver().findElement(By.xpath(xpath))).perform();
     }
-
     @Then("I press enter for element with xpath {string}")
     public void iPressEnterForElementWithXpath(String xpath) {
         getDriver().findElement(By.xpath(xpath)).sendKeys(Keys.ENTER);
