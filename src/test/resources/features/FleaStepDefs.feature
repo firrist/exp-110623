@@ -8,12 +8,14 @@ Feature: Automate the FLEA Market
     Then I verify Cart Icon is present
     Then I verify Image Slider is present
     Then I verify Contact button functionality
+    Then I take screenshot
 
   @flea1
   Scenario Outline: Landing page category tests
     Given I visit FLEA Market in the "qa" Environment
     Then I verify title is "e-commerce – Automation Practice Website" for the page
     Then I verify and Click on "<name>" Category on the Top Bar
+    Then I take screenshot
     Examples:
       | name        |
       | Mac         |
@@ -32,6 +34,7 @@ Feature: Automate the FLEA Market
     Then I verify product description page contains product "<name>"
     Then I increase the counter and add to cart
     Then I verify product "<name>" has been added
+    Then I take screenshot
     Examples:
       | name                 |
       | iMac                 |
@@ -49,6 +52,7 @@ Feature: Automate the FLEA Market
     Then I change the quantity of the "<product>" to "<quantity>" and click update
     Then I verify items are updated
     Then I click the remove icon and verify "<product>" is updated
+    Then I take screenshot
     Examples:
       | product              | quantity |
       | iMac                 | 2        |
